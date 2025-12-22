@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: book
 title: "Bubble Wrap Setup"
 parent: "Exploration: Bubble Wrap"
 nav_order: 100
