@@ -86,7 +86,7 @@ There will be a lot of output, but we should expect to get an error that looks s
 
 ## #include
 
-What's going on? Well, we told the compiler that we want to use the `bn::backdrop` namespace, but then never included that in our code. Right now, all our `main.cpp` knows about is what we've written directly there. We need a way for it to see code that [GValiente](https://github.com/GValiente) wrote when he created Butano.
+What's going on? Well, we told the compiler that we want to use the `bn::backdrop` namespace, but then never included that in our code. Right now, all our `main.cpp` knows about is what we've written directly there. We need a way for `main.cpp` to see code that [GValiente](https://github.com/GValiente) wrote when he created Butano.
 
 We do that using the `#include` preprocessor directive.
 
@@ -96,3 +96,105 @@ We do that using the `#include` preprocessor directive.
 > `#include` says to take something from another file, and essentially copy-paste it to the top of our file. So if I had `#include <cool_file.h>` in my `main.cpp` it would be as if I had copy-pasted all of `cool_file.h` at the top of `main.cpp` before sending it to the compiler.
 > We'll meet a lot of other preprocessor directives later, like `#define`, `#ifndef` and so on.
 {: .note}
+
+For our file we'll need two includes: one for `bn::backdrop` and one for `bn::color`. Add these to the top of your `main.cpp`
+
+```cpp
+#include <bn_backdrop.h>
+#include <bn_color.h>
+```
+
+How did I know which files to include? I looked at the docs! For example, on the [bn::backdrop page](https://gvaliente.github.io/butano/namespacebn_1_1backdrop.html) the needed include statement is on the top right corner. Nifty!
+
+Now that we've got the correct imports, let's try compiling again:
+
+```
+make
+```
+
+This one might take a little bit. You'll see that it lists off a lot of files from Butano. Just setting the backdrop colors causes a ton of dependencies to get pulled in! Don't worry though, it won't take this long every time. `make` is smart enough to only recompile files that have changed or that have had their dependencies changed since you last ran `make`.
+
+But once it's finally done running, the last line should say `ROM fixed!`. If you look at the files, you'll see that a `bubble-wrap.gba` file has been created!
+
+There's a lot of other files and folders that get created too. If you're curious, take a look in the `build` folder. There's dozens of files in there that get created when you run make! There's also a `bubble-wrap.elf`. Feel free to explore on your own for now, we'll talk more about what these files are later
+{: .note }
+
+## Running the ROM
+
+We'll use our emulator mGBA to run the ROM you just created. 
+
+# TODO: mGBA instructions
+
+...but there's a problem. We wanted a blue screen, and when we actually got was all white! It turns out there's a few more things we need to add to set Butano up properly.
+
+## Butano init
+
+Before we call any functions for Butano, we need to *initialize* the Butano system. Do this by adding the following line to the beiginning of your `main` function (just before the `set_color`).
+
+```cpp
+bn::core::init();
+```
+
+We're also going to need to add something else to the top of our file. Can you think of what?
+
+<details>
+    <summary>
+        Expand to see answer
+    </summary>
+<div markdown="1">
+We need an include for `bn::core`
+```cpp
+#include <bn_core.h>
+```
+</div>
+</details>
+
+We can try it again! We'll `make` and run it in mGBA again. Fair warning though: it's not going to quite work and it's going to cause an annoying sound.
+
+```
+make
+```
+
+The good news is that compiling is much faster! You'll see it only needs to recompile `main.cpp` and not all of the Butano dependencies from before. The bad news is that we're only seeing a black screen and hearing an awful ticking sound.
+
+## The update loop
+
+Our issue is that we initialized Butano, set the backdrop, and †hen... nothing. We reached the end of our main method. Running on a normal computer this is where our program would end and control would return to the operating system. But the Game Boy Advance doesn't have an operating system! There's no good place to return to. If we try, bad garbage like our mysterious ticking sound can occur. We need to make sure our `main` never ends.
+
+> ### Is it because we didn't `return 0;`?
+> You may have noticed that `main` is an `int` function, and there's nowhere that we return an `int`. This is a problem for most C/C++ functions - it normally can cause all sorts of unsavory undefined behavior if we don't have a return statement for a non-void function. But there's actually an exception for `main` only. In `main`, if we don't have a return statement hit by the end of the function, it is implictly threated as a `return 0;`. Programming for a normal computer this is fine, but as explained above, `main` ending in ANY way is bad news on the GBA!
+{: .question}
+
+So what's a good way to make sure `main` never ends? How can we make sure a function keeps on executing forever? Take a guess as to how you think we'll do it!
+
+<details>
+    <summary>
+        Expand to see answer
+    </summary>
+<div markdown="1">
+We'll use an infinite loop.
+</div>
+</details>
+
+This approach is going to be important beyond just making our ticking problem go away. In a real game we want to be continually doing stuff! Characters should be moving, music playing, AI plotting. We don't want to just run a piece of code and be done. It needs to keep going as the player interacts with the game.
+
+By having an infinite loop, we can repeatedly do things like checking what buttons the player is pressing, moving characters around, and updating the positions of sprites on the screen. Butano will be a big help here. Once per screen refresh, we'll call `bn::core::update()`. Everything else that we do in Butano will get relfected with that update call. This update also automatically synchronizes with the screen refresh, so it should get called at 60fps so long as we keep calling it in a loop.
+
+We'll definitely be expanding our loop later, but for now we'll start simple. Place this at the end of your `main` function (but still inside it, before that last curly brace!)
+
+```cpp
+while(true) {
+    bn::core::update();
+}
+```
+
+`while(true)` just means, "loop forever". A while statement stops looping when its condition is `false`, so if we say it's always `true`, it never stops! `bn::core::update();` handles the updating and will get called over and over again (synchronized to 60fps) until you turn off your GBA or the battery dies.
+
+Make your code and run it one more time. I've got a good feeling about this one.
+
+```
+make
+```
+
+When running it in mGBA you should finally see a blue screen. Hallelujah! 
+
