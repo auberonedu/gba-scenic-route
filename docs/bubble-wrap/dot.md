@@ -198,3 +198,18 @@ make
 
 When running it in mGBA you should finally see a blue screen. Hallelujah! 
 
+![A screenshot of a GBA running a ROM that displays a baby blue background](./blue_rect.png)
+
+## Victory Lap
+
+Phew! That was a lot just to get a blue background. We did take the scenic route to get there though, when you start a new project you can pretty much just copy-paste this boilerplate (standard piece of code) to get started.
+
+We've got a lot more to do, but let's pause for a moment. The first thing you should be do is make sure your changes are saved and backed up. Do that using `git`
+
+# TODO: Git instructions?
+
+Now is also a great time to experiment. Trying changing the color around! Experiment with different numbers 0-31 in the red, green, and blue locations. Find a color you like! Or be mischevous: what happens if you try to put in a number that's outside of that 0 to 31 range? Only one way to find out!
+
+If you've got a physical Game Boy Advance, now's a great time to experiment on there too. Copy over the ROM you created, and see what the color looks like on the Game Boy's screen. You'll notice that it looks a lot different than on your computer monitor! It's extremely useful to test on physical hardware frequently if you can.
+
+If you're going through this tutorial as part of a class I'm teaching, you are REQUIRED to choose a new color at this point. Fun and creativity is MANDATORY. I never want to see an assignment that you turn in that's just exactly what the tutorial told you to do. Always put at least a little spin on it. You'll have more and more opportunity to do this as your knowledge grows.
