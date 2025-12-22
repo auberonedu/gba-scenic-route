@@ -1,41 +1,98 @@
 {%- comment -%}
-Minimal next/prev based on nav_order across all pages in the sidebar.
-Assumes you set nav_order on pages you want in the reading sequence.
+Next/Prev for Just-the-Docs-like nav, ONE LEVEL DEEP.
+
+Order:
+  - top-level pages (no parent), by nav_order then title
+  - then each page's children (parent == top.title), by nav_order then title
+
+No indexing (avoids /0 and nil coercion weirdness).
 {%- endcomment -%}
 
-{%- assign candidates = site.html_pages
-  | where_exp: "p", "p.nav_exclude != true"
+{%- assign pages = site.html_pages
   | where_exp: "p", "p.title"
+  | where_exp: "p", "p.nav_exclude != true"
+-%}
+
+{%- assign top_with_order = pages
+  | where_exp: "p", "p.parent == nil"
+  | where_exp: "p", "p.nav_order != nil"
   | sort: "nav_order"
 -%}
 
-{%- assign prev_page = nil -%}
-{%- assign next_page = nil -%}
-{%- assign found = false -%}
+{%- assign top_no_order = pages
+  | where_exp: "p", "p.parent == nil"
+  | where_exp: "p", "p.nav_order == nil"
+  | sort: "title"
+-%}
 
-{%- for p in candidates -%}
-  {%- if found -%}
-    {%- assign next_page = p -%}
+{%- capture flat -%}{%- endcapture -%}
+
+{%- assign tops = top_with_order | concat: top_no_order -%}
+
+{%- for top in tops -%}
+  {%- capture flat -%}{{ flat }}{{ top.url }}|||{{ top.title | replace: "|||", " " }}\n{%- endcapture -%}
+
+  {%- assign kids_with_order = pages
+    | where: "parent", top.title
+    | where_exp: "p", "p.nav_order != nil"
+    | sort: "nav_order"
+  -%}
+
+  {%- assign kids_no_order = pages
+    | where: "parent", top.title
+    | where_exp: "p", "p.nav_order == nil"
+    | sort: "title"
+  -%}
+
+  {%- assign kids = kids_with_order | concat: kids_no_order -%}
+
+  {%- for kid in kids -%}
+    {%- capture flat -%}{{ flat }}{{ kid.url }}|||{{ kid.title | replace: "|||", " " }}\n{%- endcapture -%}
+  {%- endfor -%}
+{%- endfor -%}
+
+{%- assign rows = flat | split: "\n" -%}
+
+{%- assign prev_url = nil -%}
+{%- assign prev_title = nil -%}
+{%- assign next_url = nil -%}
+{%- assign next_title = nil -%}
+
+{%- assign last_url = nil -%}
+{%- assign last_title = nil -%}
+{%- assign seen_current = false -%}
+
+{%- for row in rows -%}
+  {%- if row == "" -%}{%- continue -%}{%- endif -%}
+  {%- assign parts = row | split: "|||" -%}
+  {%- assign u = parts[0] -%}
+  {%- assign t = parts[1] -%}
+
+  {%- if seen_current -%}
+    {%- assign next_url = u -%}
+    {%- assign next_title = t -%}
     {%- break -%}
   {%- endif -%}
 
-  {%- if p.url == page.url -%}
-    {%- assign found = true -%}
+  {%- if u == page.url -%}
+    {%- assign prev_url = last_url -%}
+    {%- assign prev_title = last_title -%}
+    {%- assign seen_current = true -%}
   {%- else -%}
-    {%- assign prev_page = p -%}
+    {%- assign last_url = u -%}
+    {%- assign last_title = t -%}
   {%- endif -%}
 {%- endfor -%}
 
 <nav class="jp-next-prev" aria-label="Previous and next page">
   <div class="jp-prev">
-    {%- if prev_page -%}
-      <a href="{{ prev_page.url | relative_url }}">&larr; {{ prev_page.title }}</a>
+    {%- if prev_url -%}
+      <a href="{{ prev_url | relative_url }}">&larr; {{ prev_title }}</a>
     {%- endif -%}
   </div>
-
   <div class="jp-next">
-    {%- if next_page -%}
-      <a href="{{ next_page.url | relative_url }}">{{ next_page.title }} &rarr;</a>
+    {%- if next_url -%}
+      <a href="{{ next_url | relative_url }}">{{ next_title }} &rarr;</a>
     {%- endif -%}
   </div>
 </nav>
