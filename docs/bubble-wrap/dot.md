@@ -60,3 +60,39 @@ be accessing something from the `backdrop` namespace within the `bn` namespace. 
 Why 0 to 31? We'll answer this in more detail later when we discuss binary and hexadecimal, but the short answer is that the Game Boy Advance supports 15-bit colors - 5 bits for each color channel.
 {: .question}
 
+## Compiling
+
+Let's try to compile this and see what happens! If it's not already there, pull up your termainl in VS Code (Terminal > New Terminal). If you're on Windows, make sure it's using Git Bash. If you're on Mac, make sure it's zsh.
+
+Make sure you're in the `bubble-wrap` directory on your terminal. This won't do what it needs to if you're in the wrong directory! Then, type `make` and hit enter.
+
+```
+make
+```
+
+There will be a lot of output, but we should expect to get an error that looks something like this somewhere near the bottom. This is actually expected! I've given you some broken code so we can figure out what's wrong. To be fair, I warned you at the beginning this would be a scenic route.
+
+```
+/Users/auberon/programming/bubble-wrap/src/main.cpp: In function 'int main()':
+/Users/auberon/programming/bubble-wrap/src/main.cpp:5:5: error: 'bn' has not been declared
+    5 |     bn::backdrop::set_color(bn::color(20, 20, 31));
+```
+
+> ### I got a different error!
+> The above error is expected and good at this point! But if you got a different error, there's something wrong with your setup. If you got an error that said that make is not installed or it doesn't know the command make, your overall setup was incorrect. Take another look at the [Environment Setup](../env-setup/index.md) and see if you can figure out what's going wrong.
+> 
+> If you got an error saying no makefile found, you're in the wrong directory. Use `cd` to find your way to the `bubble-wrap` directory and try again. Consider closing and re-opening your VS Code so it's exactly in the `bubble-wrap` directory, not above or below it.
+{: .error}
+
+## #include
+
+What's going on? Well, we told the compiler that we want to use the `bn::backdrop` namespace, but then never included that in our code. Right now, all our `main.cpp` knows about is what we've written directly there. We need a way for it to see code that [GValiente](https://github.com/GValiente) wrote when he created Butano.
+
+We do that using the `#include` preprocessor directive.
+
+> ### Preprocessor directives and #include
+> A **preprocessor directive** describes something that should happen in our build system even before the compiler sees the code. We'll recognize preprocessor directives because they start with a `#` (typically called a "pound", not a "hashtag").
+>
+> `#include` says to take something from another file, and essentially copy-paste it to the top of our file. So if I had `#include <cool_file.h>` in my `main.cpp` it would be as if I had copy-pasted all of `cool_file.h` at the top of `main.cpp` before sending it to the compiler.
+> We'll meet a lot of other preprocessor directives later, like `#define`, `#ifndef` and so on.
+{: .note}
