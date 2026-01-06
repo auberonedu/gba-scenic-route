@@ -7,8 +7,4 @@ has_children: true
 
 # Environment Setup
 
-These steps will help you install and configure everything needed.
-
-1. [Git / GitHub](./git.md)
-1. [Docker / VS Code](./vscode.md)
-1. [mGBA / LibreSprite](./gba.md)
+These steps will help you install and configure everything needed for a full GBA development environment.
