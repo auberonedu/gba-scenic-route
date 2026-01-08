@@ -25,5 +25,5 @@ In this section we will use the mGBA emulator to run a Game Boy Advance game.
 1. Find your ROM based off of where `pwd` said it was. Open the `env-learning.gba` ROM.
 1. Run the game! The arrow keys correspond the to the d-pad and `z` and `x` are the **A** and **B** buttons.
 
-Now that the game is running, let's try making a change!
+Now that the game is running, let's try making a change, and saving our changes to git/GitHub.
 
