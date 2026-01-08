@@ -68,4 +68,4 @@ In this section we'll learn about how to use git to version our code and back it
 1. Open your ROM in mGBA to see your new changes.
 1. Once you're satisfied with your changes, follow the above steps to add, commit, and push your modifications to `src/main.cpp`
 
-Next, we'll explore how your game gets published to the web for anyone to play!
+Next, we'll explore how your game gets published to the web using GitHub Pages for anyone to play!
