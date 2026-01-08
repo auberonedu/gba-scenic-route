@@ -49,5 +49,6 @@ Before running VS Code with a Dev Container, we need to make sure Docker Desktop
     > ### How does `make` know how to make the game?
     > The configuration for `make` is in the `Makefile` file. Feel free to open it up and take a quick look if you're curious. Most of the magic happens in Butano / DevKitArm's Makefiles, but this one shows you how they're configured. Explore your curiosity!
     {: .question}
+1. If all goes well, a few files will be created, including `env-learning.gba`. This is your compiled Game Boy Advance ROM!
 
 After the game compiles, we'll try running it in mGBA!
