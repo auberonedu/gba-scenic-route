@@ -30,7 +30,7 @@ Before running VS Code with a Dev Container, we need to make sure Docker Desktop
     > If the pop-up does not appear, you can manually choose to re-open in container by clicking the button with the left and right arrows in the VERY bottom left of the VS Code window. It will pop up a list of options at the top of the window. Choose "Reopen in Container"
     {: .note}
 1. This will create a new container (similar to a lightweight virtual machine) that has all the tools we need for Game Boy Advance Development set up in it. It will take a while the first time it sets up, there's a lot it needs to download. It will be faster after the first time.
-    > # How does VS Code Know How to Configure the Environment?
+    > ### How does VS Code Know How to Configure the Environment?
     > The configuration for the Dev Container is in the `.devcontainer` directory. Feel free to take a peek in there to explore your curiosity if you like! You won't need to change anything there, but it might be interesting to see.
     {: .question}
 
@@ -46,7 +46,7 @@ Before running VS Code with a Dev Container, we need to make sure Docker Desktop
     make
     ```
 1. This will compile the game. It will take a while the first time, but will be faster on subsequent makes.
-    > # How does `make` know how to make the game?
+    > ### How does `make` know how to make the game?
     > The configuration for `make` is in the `Makefile` file. Feel free to open it up and take a quick look if you're curious. Most of the magic happens in Butano / DevKitArm's Makefiles, but this one shows you how they're configured. Explore your curiosity!
     {: .question}
 
