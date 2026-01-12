@@ -1,7 +1,7 @@
 ---
 layout: book
 title: "Flash Carts"
-nav_order: 200
+nav_order: 100
 has_children: false
 parent: "Hardware"
 ---
