@@ -36,7 +36,7 @@ For our user to interact, we want to know what buttons are held down on what fra
 
 Butano calls buttons the "keypad." Let's start off by importing the keypad functionality. Place this with your other includes at the top:
 
-```
+```cpp
 #include <bn_keypad.h>
 ```
 
@@ -44,7 +44,7 @@ You can learn about what's in this namespace using the [Butano keypad documentat
 
 Somewhere inside your `main` function, begin typing a line:
 
-```
+```cpp
 bn::keypad::
 ```
 
@@ -55,7 +55,7 @@ You should see a lot of suggestions come up! These are all functions/types/etc t
 Before writing the actual C++, it's often helpful to plan what we want to do first. In our case, here's what we want:
 
 ```
-if A button is pressed, change backdrop color to red
+if A button is pressed, change backdrop color to pink
 ```
 
 For more complex ideas it can be useful to write out our plan in English (or any other natural language), make psuedocode, draw pictures, talk about it with a friend, &c. Taking just a bit longer to plan can often save you a lot of pain in the long run.
@@ -64,7 +64,7 @@ For more complex ideas it can be useful to write out our plan in English (or any
 
 To see whether the A button is pressed, we'll use the `a_pressed` function:
 
-```
+```cpp
 bn::keypad::a_pressed()
 ```
 
@@ -86,4 +86,31 @@ We need the open and close parentheses because `a_pressed()` is a function call 
 
 ### if this, then that
 
-Next, we're going to use that press
+Next, we're going to use that press to control the behavior of our code. Remember, this is what we want:
+
+```
+if A button is pressed, change backdrop color to pink
+```
+
+Make a prediction of how we can do that! Try it out first before seeing the answer.
+
+<details>
+    <summary>
+        Expand to see answer
+    </summary>
+<div markdown="1">
+Combine an `if` statement with our `a_pressed()` and `set_color`
+```cpp
+if (bn::keypad::a_pressed()) {
+    bn::backdrop::set_color(bn::color(31, 20, 20));
+}
+```
+
+The `if` statement checks whether the expression between the parentheses evaluates to `true` or `false` (more generally truthy or falsy). If it's `true`, then the code between the curly braces gets executed. If the expression is `false`, the code get skipped. `a_pressed()` returns `true` or `false` depending on whether A has been pressed, so it works perfect here.
+
+> You may be used to expressions like `if (x == 5)` or `if (word == "hello")`. So why not `if (bn::keypad::a_pressed() == true)`?
+>
+>It's because the result of `a_pressed()` is already a boolean - it's already `true` or `false`. So we don't need a comparison to check, we can just use the boolean directly. You should almost never need to use `== true` or `== false`. Just use the boolean directly.
+{: .question}
+</div>
+</details>
