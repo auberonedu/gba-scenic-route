@@ -241,6 +241,18 @@ If you don't see the deployments, there's likely one or more of a few issues:
 
 If you're going through this tutorial as part of a class I'm teaching, you are REQUIRED to choose a new color at this point. Fun and creativity is MANDATORY. I never want to see an assignment that you turn in that's just exactly what the tutorial told you to do. Always put at least a little spin on it. You'll have more and more opportunity to do this as your knowledge grows.
 
+> #### Oh no, I broke it!
+> As you're experimenting, things might stop working, and you may forget how to get them working again. This is OK, expected, and even GOOD! If you never break anything you're not experimenting enough!
+>
+> Git gives us a safety net so we can go back. A few simple ways to go back.
+> - You can discard changes to a file since your last commit by using `git restore FILENAME`. DO be careful though! All those uncommitted changes are gone forever if you do this!
+> - You can look at the state of your code from an earlier commit. The easiest way is to go to GitHub for your repository and click on the commit history button. It's just under the green code button, and says `N Commits`, where `N` is the number of commits in the repo.You'll then see the whole commit history (even commits I made before you forked the repo). Click on the the brackets `<>` next to a commit to see what the repo looked like at a previous point. You can copy some or all of the needed code.
+>
+> There are much more sophisticated ways to handle your git history (reverting/resetting commits etc.) but we'll explore those later.
+{: .error}
+
+Once you're done experimenting, add, commit, and push your changes again! Make sure your fun experiment gets saved!
+
 ## Next Steps
 
 We've finally got SOMETHING working, but it's not really a game yet. Let's add some interactivity!
