@@ -41,6 +41,9 @@ callouts:
   important:
     title: Important
     color: yellow
+  challenge:
+    title: Challenge
+    color: purple
 
 # Exclude from processing.
 # The following items will not be processed, by default.

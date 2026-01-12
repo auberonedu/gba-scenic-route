@@ -55,7 +55,7 @@ You should see a lot of suggestions come up! These are all functions/types/etc t
 Before writing the actual C++, it's often helpful to plan what we want to do first. In our case, here's what we want:
 
 ```
-if A button is pressed, change backdrop color to pink
+if A button is pressed, change backdrop color to pastel pink
 ```
 
 For more complex ideas it can be useful to write out our plan in English (or any other natural language), make psuedocode, draw pictures, talk about it with a friend, &c. Taking just a bit longer to plan can often save you a lot of pain in the long run.
@@ -89,20 +89,20 @@ We need the open and close parentheses because `a_pressed()` is a function call 
 Next, we're going to use that press to control the behavior of our code. Remember, this is what we want:
 
 ```
-if A button is pressed, change backdrop color to pink
+if A button is pressed, change backdrop color to pastel pink
 ```
 
-Make a prediction of how we can do that! Try it out first before seeing the answer.
+Make a prediction of how we can do that! Try it out first before seeing the answer. You can choose your own color instead of pink.
 
 <details>
     <summary>
         Expand to see answer
     </summary>
 <div markdown="1">
-Combine an `if` statement with our `a_pressed()` and `set_color`
+Combine an `if` statement with our `a_pressed()` and `set_color`.
 ```cpp
 if (bn::keypad::a_pressed()) {
-    bn::backdrop::set_color(bn::color(31, 20, 20));
+    bn::backdrop::set_color(bn::color(31, 21, 22));
 }
 ```
 
@@ -119,7 +119,9 @@ The `if` statement checks whether the expression between the parentheses evaluat
 
 So where does does that if-block go? Let's try a few places and see what works and what doesn't.
 
-To start, let's try putting it **outside** the while loop. Our code up to this point should look something like the below (it's OK if your code has some other stuff going on based on what you added to experiment)
+### Outside the while loop
+
+To start, let's try putting it **outside** the while loop. Our code up to this point should look something like the below (it's OK if your code has some other stuff going on based on what you added to experiment or if you've chose different colors)
 
 
 <details>
@@ -138,7 +140,7 @@ int main() {
     bn::backdrop::set_color(bn::color(20, 20, 31));
 
     if (bn::keypad::a_pressed()) {
-        bn::backdrop::set_color(bn::color(31, 20, 20));
+        bn::backdrop::set_color(bn::color(31, 21, 22));
     }
 
     while(true) {
@@ -152,3 +154,63 @@ int main() {
 Now, compile your code again with make, and try running it in mGBA. By default, the `X` key is used for the A button in mGBA.
 
 Give it a try and you'll see... pressing the key does nothing.
+
+So why didn't that work? Take a guess and see if you're right.
+
+<details>
+    <summary>
+        Expand to see answer
+    </summary>
+Because the if-block is outside of the while loop, we only ever check whether the A button is pressed at the very beginning when the game starts up. Later presses of the A button get completely ignored. 
+</details>
+
+### Inside the while loop
+What we really want to do is check it **each frame** if the A button has been pressed. That way it gets updated whenever the user presses the button. So our new plan should be:
+
+```
+EACH FRAME if A button is pressed, change backdrop color to pastel pink
+```
+
+To do so, we're going to put our logic inside the `while` loop. Move the if-block inside the while loop so it looks like this:
+
+```cpp
+while(true) {
+    if (bn::keypad::a_pressed()) {
+        bn::backdrop::set_color(bn::color(31, 21, 22));
+    }
+
+    bn::core::update();
+}
+```
+
+Now, the loop will alternate between checking for A presses and updating Butano. The Butano `update` method automatically locks to frame refreshes (approximately 60 frames per second), so our key press properly gets called once per frame!
+
+Trying using `make` to compile again, and run your code in mGBA. This time, pressing the Z key (to simulate the A button) should change the color. It will only change once - you'll need to restart the game to get back to the original color. But we're making progress!
+
+You've accomplished some new functionality here! Make sure to save your progress: add, commit and push your code. You might also consider testing this on real hardware if you have access to it.
+{: .note}
+
+### A third color and beyond
+
+Let's make it so we can go to a third color when we press the B button (z by default on mGBA). We'll want to keep all our old code, but add something new. Think of what you need and give it a try before looking at the answer.
+
+<details>
+    <summary>
+        Expand to see answer
+    </summary>
+You need to add another if-block inside your while loop, this one checking `b_pressed()` and setting to another color. Go ahead and do so now if you haven't already.
+</details>
+
+`make` your code, and verify that you can toggle between colors. Got it working? Add, commit, push! Then go ahead and add more colors for more buttons if you like!
+
+> Ideas on more challenging things you optionally can do here:
+>
+> Some of these get quite tricky! You may need to do some extra research to learn new techniques to solve these.
+> - Can you make it so that there's a default color when no buttons are pressed, and that each button's color is only displayed for as long as that button is held down?
+> - Alternatively an you make it the color only stays for 1 second (60 frames) after pressing a button before returning to the default color?
+> - Can you make it so that when you hold down two buttons their colors get blended together?
+> - Can you come up with something more creative to do here?
+>
+> You definitely don't *need* to do any of these, but they can be fun to try or at least think about how you would approach.
+{: .challenge}
+
