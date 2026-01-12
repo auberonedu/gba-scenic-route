@@ -22,6 +22,8 @@ We will always need Docker Desktop running in the background when we're doing ou
 
 Next, install [VS Code](https://code.visualstudio.com/download). This will be the editor we'll use for our code.
 
+Mac Only - Follow these instructions to [add VS Code to your PATH](https://code.visualstudio.com/docs/setup/mac#_configure-the-path-with-vs-code).
+
 ## Dev Containers Extension
 
 Install the [Dev Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) for VS Code. This will allow VS Code, Docker Desktop, and special development environments I've configured specifically for this scenic route to work together. Note that when you click the install button, it will ask for permission to open VS Code. Give it permission to do so.
