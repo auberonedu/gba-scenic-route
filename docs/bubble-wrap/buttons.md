@@ -84,7 +84,7 @@ We need the open and close parentheses because `a_pressed()` is a function call 
 > In our case, we need to backdrop to change when the button is pressed, but it doesn't need to continually keep on changing as it's held. That's why we chose to used `a_pressed()`
 {: .question}
 
-### if this, then that
+## if this, then that
 
 Next, we're going to use that press to control the behavior of our code. Remember, this is what we want:
 
@@ -114,3 +114,41 @@ The `if` statement checks whether the expression between the parentheses evaluat
 {: .question}
 </div>
 </details>
+
+## Logic placement
+
+So where does does that if-block go? Let's try a few places and see what works and what doesn't.
+
+To start, let's try putting it **outside** the while loop. Our code up to this point should look something like the below (it's OK if your code has some other stuff going on based on what you added to experiment)
+
+
+<details>
+    <summary>
+        Expand to see code
+    </summary>
+<div markdown="1">
+```cpp
+#include <bn_color.h>
+#include <bn_backdrop.h>
+#include <bn_core.h>
+#include <bn_keypad.h>
+
+int main() {
+    bn::core::init();
+    bn::backdrop::set_color(bn::color(20, 20, 31));
+
+    if (bn::keypad::a_pressed()) {
+        bn::backdrop::set_color(bn::color(31, 20, 20));
+    }
+
+    while(true) {
+        bn::core::update();
+    }
+}
+```
+</div>
+</details>
+
+Now, compile your code again with make, and try running it in mGBA. By default, the `X` key is used for the A button in mGBA.
+
+Give it a try and you'll see... pressing the key does nothing.
