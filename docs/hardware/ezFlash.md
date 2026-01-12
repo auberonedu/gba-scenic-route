@@ -47,4 +47,34 @@ If you are on Windows, follow these steps:
 
 # TODO
 
+## Copying Games
+
+After the MicroSD card has been formatted, you can simply copy over your GBA ROMs onto the card just like a normal drive on your computer. Make sure to copy over the `.gba` files, NOT the `.elf` files.
+
+To start, try copying over the ROM you made for the "Learning Your Environment" section! I'd also recommend copying over something more substantial. Perhaps the excellent [GBA Microjam 23 ROM](https://gbadev.itch.io/gba-microjam-23)? Make sure to copy at least two ROMs over, they'll help us see something important.
+
+Once the files have been copied, eject the MicroSD card and remove it from your computer.
+
+## Using the EZ Flash Air
+
+First, insert the MicoSD card into the side of the EZ Flash Air cart. Be gentle and don't force it! The tolerances aren't perfect, and I've accidentally jammed the card in before in a way it wasn't supposed to fit.
+
+Next, insert the cartidge and start up the GBA! The EZ Flash logo will show, and you will be plopped into the bootloader. Use the L/R shoulder buttons to navigate the tabs of the bootloader. Select the SD Card tab, which should show the ROMs you copied to the card.
+
+### NOR Flash
+
+Unlike more premium carts like the EverDrive Mini, the EZ Flash Air cannot directly play from the SD Card. Games must first be copied to the cart's NOR flash memory before they can be played.
+
+Select the game you want to start copy to NOR using the D-pad and A button. Choose `WRITE TO NOR CLEAN` to copy. Depending on how large the ROM is, it might take a little bit!
+
+> ## What's NOR Flash?
+> NOR flash memory is a type of phycial computer data storage that operates using NOR gates. It's fast and good for random access reads, and keeps storage even when powered off (it's non-volatile). If you're interested, follow your curiosity with [this Wikipedia article](https://en.wikipedia.org/wiki/Flash_memory) to learn more about NOR flash memory and its sister, NAND flash memory.
+{: .question}
+
+
+> If you're keeping a close eye on the progress indicator, the ROM might look like it's 8 times bigger than you might expect! That's because the progress shows kilo**bits** or mega**bits** instead of the more typical kilo**bytes** or mega**bytes**. A byte is 8 bits, hence the 8x difference in number displayed.
+{: .note}
+
+
+
 
