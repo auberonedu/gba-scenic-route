@@ -11,9 +11,9 @@ On this page we'll be exploring how to get user input from the GBA's buttons.
 
 ## Small verifiable goal
 
-As always we want to make a small goal that we can verify is working. Our goal in this section is going to be making it so that the backdrop color changes when the user presses A or B.
+As always we want to make a small goal that we can verify is working. Our goal in this section is going to be making it so that the backdrop color changes when the user presses A or B. It'll look something like the below:
 
-# TODO: gif of screen color changing
+![A gif of a GBA backdrop shifting between blue, pink, and white](./backdropColors.gif)
 
 ## GBA Buttons
 
