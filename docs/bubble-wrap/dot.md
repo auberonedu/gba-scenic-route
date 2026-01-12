@@ -1,11 +1,18 @@
 ---
 layout: book
-title: "A Lonesome Dot"
+title: "Butano Boilerplate"
 parent: "Exploration: Bubble Wrap"
 nav_order: 200
 ---
 
-# A Lonesome Dot
+# Butano Boilerplate
+
+To start off, we'll be learning the required **boilerplate** for Butano. Boilerplate is rote code that needs to be repeated almost verbatim for every project. In Butano, we'll almost always need to:
+
+- Import Butano libraries
+- Make a main function
+- Initialize Butano
+- Set up an event loop
 
 ## Small Verifiable Goals
 
@@ -13,19 +20,11 @@ When we're programming it's best to set small incremental goals. It's OK (and go
 
 If we take hours and try to do everything at once and then it doesn't work, it'll be a nightmare trying to figure out what went wrong. But if we work incrementally, we have a lot smaller space of possibilities to search when something goes wrong.
 
-Our goal for this first part of Bubble Wrap is going to be showing just a single circle on our GBA screen.
+Our goal for this first part of Bubble Wrap is going to be simply setting the backdrop color. We just want to have SOME visual confirmation that what we're doing is working. Setting the backdrop of the screen to show all blue will let us know we've done that. So let's get to work!
 
-# TODO: Screenshot of a dot
-
-We can go deeper though - having even smaller subgoals for each goal. Let's start with about as barebones as we can get...
-
-## Microgoal #1: Getting the screen to show a blue background
-
-We just want to have SOME visual confirmation that what we're doing is working. Setting the backdrop of the screen to show all blue will let us know we've done that. So let's get to work!
+## `int main()` function
 
 We'll begin opening up `main.cpp` which you can find in the `src` directory. It's totally empty to start!
-
-### `int main()` function
 
 The first thing we'll want to add is a `main` function. We'll need this in every game we make. It's where the Game Boy will look to begin executing our code.
 
@@ -106,6 +105,10 @@ For our file we'll need two includes: one for `bn::backdrop` and one for `bn::co
 
 How did I know which files to include? I looked at the docs! For example, on the [bn::backdrop page](https://gvaliente.github.io/butano/namespacebn_1_1backdrop.html) the needed include statement is on the top right corner. Nifty!
 
+
+The Butano docs are a FANTASTIC source of information. It's **the** authoritative source of how to use Butano. As of early 2026, AI chatbots frequently get things wrong with Butano (a lot more so than for other more common libraries), hallucinating Butano functions or using them incorrectly. Prefer looking at the real documentation. Consider even just browsing through it, even when you don't have a speicifc problem to solve. It's cool just to see everything Butano can do!
+{: .note}
+
 Now that we've got the correct imports, let's try compiling again:
 
 ```
@@ -121,9 +124,7 @@ There's a lot of other files and folders that get created too. If you're curious
 
 ## Running the ROM
 
-We'll use our emulator mGBA to run the ROM you just created. 
-
-# TODO: mGBA instructions
+We'll use our emulator mGBA to run the ROM you just created. Open up your ROM (the `.gba` file) in mGBA.
 
 ...but there's a problem. We wanted a blue screen, and when we actually got was all white! It turns out there's a few more things we need to add to set Butano up properly.
 
@@ -206,10 +207,36 @@ Phew! That was a lot just to get a blue background. We did take the scenic route
 
 We've got a lot more to do, but let's pause for a moment. The first thing you should be do is make sure your changes are saved and backed up. Do that using `git`
 
-# TODO: Git instructions?
+You should very frequently be adding, committing, and pushing in `git`! Every time you've got a new useful set of changes, make sure to make a commit!
+{: .note}
 
-Now is also a great time to experiment. Trying changing the color around! Experiment with different numbers 0-31 in the red, green, and blue locations. Find a color you like! Or be mischevous: what happens if you try to put in a number that's outside of that 0 to 31 range? Only one way to find out!
+### Git refresher
+1. Make sure you're in the correct repository directory by running `pwd` (the path should end with `bubbleWrap`). If you're not, `cd` to the correct directory.
+1. Run `git status` to check that the file(s) you edited show up in red.
+1. Use `git add FILENAME` for each file you want to stage for a commit. Replace `FILENAME` with the name of the file.
+    If you have multiple files to add, you can run `git add FILENAME FILENAME2 FILENAME3` and so on to add them all at once
+    {: .note}
+1. Use `git status` again to check that all the files you want to add are in green. Double check that you've got everything you want, and nothing you don't want.
+    #### I made a mistake and added a wrong file!
+    If you made a mistake and need to unstage a change, take a look at the output from `git status`. It'll tell you the correct command to unstage a file. Unstaging makes it so the file doesn't get added to the commit, but it doesn't delete the changes locally. `git` is very descriptive in its error messages and `git status` output. If you're ever unsure how to proceed with git, start by just reading what these messages say! It'll often directly tell you what to do.
+    {: .error}
+1. Use `git commit -m "YOUR COMMIT MESSAGE"` to make a commit.
+    I recommend not using special characters like `!` for now, as your shell may interpret them as special commands. It is possible to include this punctuation, but it can be a bit of a pain using `-m`. If you're interested, search online for "escaping special characters in bash" or search for how to write commit messages using vim.
+    {: .note}
+1. Use `git push` to push your changes to GitHub.
+
+### Experimenting and Verifying
+
+Now is a great time to experiment. Trying changing the color around! Experiment with different numbers 0-31 in the red, green, and blue locations. Find a color you like! Or be mischevous: what happens if you try to put in a number that's outside of that 0 to 31 range? Only one way to find out!
 
 If you've got a physical Game Boy Advance, now's a great time to experiment on there too. Copy over the ROM you created, and see what the color looks like on the Game Boy's screen. You'll notice that it looks a lot different than on your computer monitor! It's extremely useful to test on physical hardware frequently if you can.
+
+Check that it works online too so you can easily share your game. On the right side of your repo, look for **Deployments** and choose **GitHub Pages**. Then click on the link to see the live "game" online.
+
+#### Not seeing the Deployments?
+If you don't see the deployments, there's likely one or more of a few issues:
+- It's your first time pushing and it's just not done deploying yet. Give it a minute or two.
+- You forgot to configure your repository properly
+{: .error}
 
 If you're going through this tutorial as part of a class I'm teaching, you are REQUIRED to choose a new color at this point. Fun and creativity is MANDATORY. I never want to see an assignment that you turn in that's just exactly what the tutorial told you to do. Always put at least a little spin on it. You'll have more and more opportunity to do this as your knowledge grows.
