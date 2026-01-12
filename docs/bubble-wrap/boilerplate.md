@@ -240,3 +240,7 @@ If you don't see the deployments, there's likely one or more of a few issues:
 {: .error}
 
 If you're going through this tutorial as part of a class I'm teaching, you are REQUIRED to choose a new color at this point. Fun and creativity is MANDATORY. I never want to see an assignment that you turn in that's just exactly what the tutorial told you to do. Always put at least a little spin on it. You'll have more and more opportunity to do this as your knowledge grows.
+
+## Next Steps
+
+We've finally got SOMETHING working, but it's not really a game yet. Let's add some interactivity!
