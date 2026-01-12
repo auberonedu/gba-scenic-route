@@ -1,7 +1,7 @@
 ---
 layout: book
 title: "Bubble Wrap Setup"
-parent: "Exploration: Bubble Wrap"
+parent: "Tutorial: Bubble Wrap"
 nav_order: 100
 ---
 
@@ -27,4 +27,4 @@ This will look very similar at the start of each project. We'll be starting from
 1. Open VS Code: `code .`
 1. Reopen in Dev Container. Click the button to reopen in container if prompted, otherwise click the arrows at the VERY bottom left of the window, and choose to reopen in container (DO NOT FORGET THIS!)
 
-If you did everything properly, your code should be open in VS Code, the bottom left hand corner will be BLUE and note that you're in a Dev Container, and the open workspace will be for `bubble-wrap`. If that's all good, we can finally get to coding!
+If you did everything properly, your code should be open in VS Code, the bottom left hand corner will note that you're in a Dev Container, and the open workspace will be for `bubble-wrap`. If that's all good, we can finally get to coding!

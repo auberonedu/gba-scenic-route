@@ -1,7 +1,7 @@
 ---
 layout: book
 title: "Buttons"
-parent: "Exploration: Bubble Wrap"
+parent: "Tutorial: Bubble Wrap"
 nav_order: 200
 ---
 
@@ -190,7 +190,7 @@ Trying using `make` to compile again, and run your code in mGBA. This time, pres
 You've accomplished some new functionality here! Make sure to save your progress: add, commit and push your code. You might also consider testing this on real hardware if you have access to it.
 {: .note}
 
-### A third color and beyond
+## A third color and beyond
 
 Let's make it so we can go to a third color when we press the B button (z by default on mGBA). We'll want to keep all our old code, but add something new. Think of what you need and give it a try before looking at the answer.
 
@@ -214,3 +214,6 @@ You need to add another if-block inside your while loop, this one checking `b_pr
 > You definitely don't *need* to do any of these, but they can be fun to try or at least think about how you would approach.
 {: .challenge}
 
+## What's Next?
+
+That's enough of just solid backdrops - let's start putting some real graphics on our screen! Make sure you've added, committed and pushed your changes and then head on to the next page.

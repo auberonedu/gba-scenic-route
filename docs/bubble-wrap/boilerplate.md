@@ -1,7 +1,7 @@
 ---
 layout: book
 title: "Butano Boilerplate"
-parent: "Exploration: Bubble Wrap"
+parent: "Tutorial: Bubble Wrap"
 nav_order: 200
 ---
 
@@ -50,7 +50,7 @@ int main() {
 Hmmm... when we put that in you'll probably get some red squiggles underneath parts of it. Our IDE isn't happy with us. Oh well! Let's worry about that in a moment. First let's talk about what we're trying to do, and then we'll see what's going wrong
 
 The `bn` stands for Butano. It lets the compiler know we're using a function from the Butano library. `bn::backdrop` means that we're going to 
-be accessing something from the `backdrop` namespace within the `bn` namespace. Namespaces are ways of organizing and packaging together different pieces of code. We'll learn more about them on a later exploration. *TODO: link to later exploration*
+be accessing something from the `backdrop` namespace within the `bn` namespace. Namespaces are ways of organizing and packaging together different pieces of code. We'll learn more about them later.
 
 `set_color` is a function within the `bn::backdrop` namespace. You can learn about it in the [Butano Docs](https://gvaliente.github.io/butano/namespacebn_1_1backdrop.html). `set_color` expects a color to be passed in, so we need to create one. We do so using the `bn::color` function.
 

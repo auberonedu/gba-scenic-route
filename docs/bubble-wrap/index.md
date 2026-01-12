@@ -1,13 +1,13 @@
 ---
 layout: book
-title: "Exploration: Bubble Wrap"
+title: "Tutorial: Bubble Wrap"
 nav_order: 200
 has_children: true
 ---
 
-# Exploration 1: Bubble Wrap
+# Tutorial 1: Bubble Wrap
 
-In our first exploration we will be making a little game where we've got a grid of bubbles, and we can pop them one by one with a satisfying little popping sound.
+In our first tutorial we will be making a little game where we've got a grid of bubbles, and we can pop them one by one with a satisfying little popping sound.
 
 Here's what mine ended up looking like, but you always have the freedom to experiment and make yours your own!
 
@@ -16,6 +16,7 @@ Here's what mine ended up looking like, but you always have the freedom to exper
 ## What we will learn?
  - Core Butano setup and loop
  - Backdrop settings
+ - 
  - Sprite basics
     - creating
     - positioning
