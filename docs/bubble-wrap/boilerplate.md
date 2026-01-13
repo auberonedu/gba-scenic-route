@@ -233,10 +233,10 @@ If you've got a physical Game Boy Advance, now's a great time to experiment on t
 
 Check that it works online too so you can easily share your game. On the right side of your repo, look for **Deployments** and choose **GitHub Pages**. Then click on the link to see the live "game" online.
 
-#### Not seeing the Deployments?
-If you don't see the deployments, there's likely one or more of a few issues:
-- It's your first time pushing and it's just not done deploying yet. Give it a minute or two.
-- You forgot to configure your repository properly
+> #### Not seeing the Deployments?
+> If you don't see the deployments, there's likely one or more of a few issues:
+> - It's your first time pushing and it's just not done deploying yet. Give it a minute or two.
+> - You forgot to configure your repository properly
 {: .error}
 
 If you're going through this tutorial as part of a class I'm teaching, you are REQUIRED to choose a new color at this point. Fun and creativity is MANDATORY. I never want to see an assignment that you turn in that's just exactly what the tutorial told you to do. Always put at least a little spin on it. You'll have more and more opportunity to do this as your knowledge grows.
