@@ -84,3 +84,14 @@ There are a few main types of files you'll see in your build directory:
 - `.bin` **Binary files**: These files hold raw data. This is mostly used by Butano for storing sounds.
 - `.s` **Assembly Source files**: These files hold assembly code - direct descriptions of CPU instructions and data that can be converted into machine code.
 - `.txt` **Plain text files**: These files hold extra metadata in plain text
+
+So does our image show up?
+
+### Image assembly
+
+Open `dot_bn_gfx.s` in the `build` directory. Welcome to assembly! This is what the `dot.h` gets transmogrified into.
+
+Yes, "transmogrified." Butano uses [grit](http://www.coranac.com/projects/#grit) - the GBA Raster Image Transmogrifier.
+{: .note}
+
+There are two main places we're interested in: 
