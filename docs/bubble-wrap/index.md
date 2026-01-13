@@ -1,7 +1,7 @@
 ---
 layout: book
 title: "Tutorial: Bubble Wrap"
-nav_order: 200
+nav_order: 400
 has_children: true
 ---
 
