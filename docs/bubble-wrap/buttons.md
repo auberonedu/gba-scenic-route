@@ -2,7 +2,7 @@
 layout: book
 title: "Buttons"
 parent: "Tutorial: Bubble Wrap"
-nav_order: 200
+nav_order: 300
 ---
 
 # Buttons

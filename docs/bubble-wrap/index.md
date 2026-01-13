@@ -16,7 +16,7 @@ Here's what mine ended up looking like, but you always have the freedom to exper
 ## What we will learn?
  - Core Butano setup and loop
  - Backdrop settings
- - 
+ - Handling button presses
  - Sprite basics
     - creating
     - positioning
