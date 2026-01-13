@@ -31,7 +31,7 @@ You will first need to **format** the microSD card - to delete all the data on i
 If you are on Mac, follow these steps:
 1. Insert the MicroSD card. You may need to use an adapter (as of early 2026 the EZ Flash Air comes with microSD to USB-A adapter)
 1. Open the **Disk Utility**. Press `cmd-space` type "Disk Utility" and hit enter.
-1. Choose the MicroSD card on the left. BE VERY CAREFUL THAT YOU CHOOSE THE SD CARD! If you accidentally format another drive/device you risk permanently losing all your data!
+1. Choose the MicroSD card on the left. If you are using the USB adapter, it may show up as a USB device. BE VERY CAREFUL THAT YOU CHOOSE THE SD CARD! If you accidentally format another drive/device you risk permanently losing all your data!
 1. Click "Erase" at the top.
 1. Choose a name for your card. Perhaps `ezflash`?
 1. Choose a format
@@ -45,13 +45,23 @@ Your MicroSD Card should now be formatted!
 
 If you are on Windows, follow these steps:
 
-# TODO
+1. Insert the MicroSD card. You may need to use an adapter (as of early 2026 the EZ Flash Air comes with microSD to USB-A adapter)
+1. Open a Windows explorer window.
+1. On the left side find the MicroSD card under This PC. If you are using the USB adapter, it may show up as a USB device. BE VERY CAREFUL THAT YOU CHOOSE THE SD CARD! If you accidentally format another drive/device you risk permanently losing all your data!
+1. Right click the drive for the MicroSD card.
+1. Choose a volume label for your card. Perhaps `ezflash`?
+1. Choose a file system
+    - If your card has a capacity below 32GB, choose `FAT (Default)`
+    - If your card has a capacity of 32GB or bigger, choose `exFAT`
+1. Click Start, then OK.
+
+Your MicroSD card should now be formatted!
 
 ## Copying Games
 
 After the MicroSD card has been formatted, you can simply copy over your GBA ROMs onto the card just like a normal drive on your computer. Make sure to copy over the `.gba` files, NOT the `.elf` files.
 
-To start, try copying over the ROM you made for the "Learning Your Environment" section! I'd also recommend copying over something more substantial. Perhaps the excellent [GBA Microjam 23 ROM](https://gbadev.itch.io/gba-microjam-23)? Make sure to copy at least two ROMs over, they'll help us see something important.
+To start, try copying over the ROM you made for the "Learning Your Environment" section! I'd also recommend copying over something more substantial. Perhaps the excellent [GBA Microjam 23 ROM](https://gbadev.itch.io/gba-microjam-23)? Or anything from the [Homebrew Hub](https://hh.gbdev.io/search?platform=GBA&typetag=game)? Double-check that the ROMs you download are Game Boy Advance Games, not Game Boy (Color) or NES. Make sure to copy a few ROMs over, they'll help us see something important.
 
 Once the files have been copied, eject the MicroSD card and remove it from your computer.
 
