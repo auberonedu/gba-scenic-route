@@ -112,6 +112,24 @@ We need to put this line after the init because we're not allowed to do anything
 
 Try increasing/decreasing the 10 and 40 in the `create_sprite` call. Where does the dot move? What are the minimum and maximum values to keep the dot on-screen?
 
+## The GBA display and Butano
+
+The Game Boy Advance sports a 240x160 pixel screen (240 pixels wide, 160 pixels tall). Butano has a bit of an idiosyncratic way of representing sprite positions on this screen.
+
+Points are represented (x, y) where (0, 0) is the center of the screen. X increases to the right, just like in math class. But Y increases going DOWN, flipped from your traditional math diagrams! A few example points are marked on the diagram below:
+
+![Multiple coordinates marked displaying Butano's coordinate system](./coords.png)
+
+
+## Art time
+
 Try making a second dot variable `myCircle2` with new coordinates. Try making a 3rd and a 4th! Can you make a picture that looks something like this?
 
 ![Yellow sprites arranged in a crude smiley face](./smile.png)
+
+Or if that's too cliché, make some other sort of picture with your dots! Once you've got some arrangement you're happy with, add, commit, and push your art for the world to see.
+
+
+## Next
+
+Making a bunch of separate dot sprite pointer variables manually is a bit of a pain. Let's see how we can start introducing loops and data structures to do things nicer!
