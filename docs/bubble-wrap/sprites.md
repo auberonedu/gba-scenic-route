@@ -57,3 +57,61 @@ Each image needs an accompanying JSON file to tell Butano how to use the image. 
 >
 > The reason we need to specify the height is because we we will end up including multiple sprite images in a single bmp. This will be valuable for showing different versions of a sprite, like a selected/unselected button or multiple frames of a walking animation. The height will tell Butano how tall each individual sub-image is so that Butano can cleanly separate them. LibreSprite will help us with making spritesheets that hold multiple sub-images.
 {: .question}
+
+## Sprite Items
+
+If we've successfully added an image file with `"type": "sprite"`, we'll be able to start using it in our game.
+
+Let's start by adding two include statements to the top of our file:
+
+```cpp
+#include <bn_sprite_ptr.h>
+#include <bn_sprite_items_dot.h>
+```
+
+### `bn_sprite_ptr.h`
+
+`bn_sprite_ptr.h` holds information on `bn::sprite_ptr`s (sprite pointers), which are the main way we'll interact with sprites in Butano. It will give us functions to get/set the position, rotation, size, etc. of sprites and will handle ownership of the sprite data. `bn_sprite_ptr.h` is a standard part of the Butano library. Learn more about it on Butano's [documentation for bn::sprite_ptr](https://gvaliente.github.io/butano/classbn_1_1sprite__ptr.html).
+
+> What is a `sprite_ptr` actually?
+>
+> In C++ we have 4 main ways of holding variables or locations of variables:
+> - Values
+> - References
+> - Raw Pointers
+> - Smart Pointers
+> A `sprite_ptr` is a type of smart pointer. If you're familiar with smart pointers in C++, it acts similarly to `std::shared_ptr` with the same ownership and freeing rules. If you're not familiar with these ways of holding data, don't despair! We'll spend a lot of time in coming tutorials exploring these different patterns and what they mean.
+{:. question}
+
+### `bn_sprite_items_dot.h`
+
+`bn_sprite_items_dot.h` has information about the particular dot sprite created from `dot.bmp` in our `bubble-wrap` repository. When Butano sees a valid image and JSON it creates a corresponding `bn_sprite_items_IMAGE_NAME.h` file as part of our make step (where `IMAGE_NAME` is the name of the BMP file).
+
+
+> Red squiggles with new images
+> 
+> When you first attempt to add a new sprite, you might see VS Code underline the `#include <bn_sprite_items_IMAGE_NAME.h>` in red and tell you and it can't find the file. This is because the `bn_sprite_items_IMAGE_NAME.h` file does not get created until AFTER `make` has run for the first time. After the `make` succeeds the red squiggle should go away.
+{: .error}
+
+## Making a sprite
+
+Let's actually put a sprite on the screen! Put this code AFTER your init, but before your while loop:
+
+```
+bn::sprite_ptr myCircle = bn::sprite_items::dot.create_sprite(10, 40);
+```
+
+We need to put this line after the init because we're not allowed to do anything with Butano until `bn::core::init()` is called. We put the line before the while because we only want create the sprite once. Sprites will stick around until there are no longer any variables that point to them; they don't need to be recreated every frame.
+{: .note}
+
+`make` your code, run it in mGBA and you should see your sprite appear on the screen! If your backdrop color is a yellow similar to the dot, it might be hard to see. Consider changing your backdrop to something else for now if needed.
+
+![A dot sprite in a GBA game](./firstSprite.png)
+
+### Experimenting with location
+
+Try increasing/decreasing the 10 and 40 in the `create_sprite` call. Where does the dot move? What are the minimum and maximum values to keep the dot on-screen?
+
+Try making a second dot variable `myCircle2` with new coordinates. Try making a 3rd and a 4th! Can you make a picture that looks something like this?
+
+![Yellow sprites arranged in a crude smiley face](./smile.png)
