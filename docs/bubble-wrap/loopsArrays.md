@@ -154,7 +154,7 @@ Put this BEFORE your for loop. We'll create the vector, then fill it up in the l
 `bn::vector` is meant to be a direct replacement for `std::vector`. If you have experience with C++ and know how to use a `std::vector`, you already know how to use a `bn::vector`! The only main difference is that we need to specify a `MaxSize` for a `bn::vector`. This is becuase Butano is taking great pains to make everything as memory-efficient and on-the-stack as possible. The GBA is resource-constrained, so we need to take such measures!
 {: .note}
 
-### push_back
+## push_back
 
 Now that we've got an empty vector, let's repeatedly add new sprites to it. To add to the end of a vector, we use `push_back`. Add this to the end of your for-loop:
 
@@ -170,8 +170,16 @@ We'll now be repeatedly creating a variable `myCircle`, then putting that sprite
 > ```
 {: .note}
 
+Compile and run your game again and we should see our line of sprites come back! You've got something working again, let's add/push/commit.
 
+## Experiment
 
+Take a moment to experiment! A few things to consider trying:
 
+- What happens if you try to add more sprite pointers than there is space in the vector?
+- Can you make the circles more spaced out?
+- Can you have the circles in a vertical line instead of horizontal?
+- What about a diagonal line?
+- Can you make multiple different lines?
 
-
+There's lots of directions you can go here!
