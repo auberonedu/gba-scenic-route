@@ -124,7 +124,7 @@ Make your code and run it in mGBA. Then, to see the debug output click Tools > V
 
 It looks like our for-loop is running properly, but our sprites aren't showing up! What gives?
 
-## Scoping and smart pointers
+## Scoping and Smart Pointers
 
 The sprites don't show up as a result of two reasons:
 
@@ -132,6 +132,44 @@ The sprites don't show up as a result of two reasons:
 1. `sprite_ptr`s are *smart pointers*, specifically shared pointers. This means that once there are no more variables that point to the sprite, the sprite will be automatically removed.
 
 So our loop repeatedly creates a sprite, but then throws it away because the sprite pointer goes out of scope. By the time we get to our while loop, the sprites are all gone and nothing gets displayed. We need some way of keeping our sprite pointers around!
+
+## bn_vector
+
+To solve this, we'll need a data structure that can hold many sprite pointers. A great choice is a `bn::vector`. This is analogous to a list in Python an `ArrayList` in Java or a `std::vector` in C++.
+
+To use a `bn::vector`, we first need to include `bn_vector.h`. Make sure to add the appropriate include statement at the top of your file.
+
+Next, we'll create an empty vector. To make a `bn::vector` we need to specify two things:
+- What type does it hold?
+- What is its `MaxSize` - what is the maximum number of items it can hold?
+
+Declaring and initializing a vector that can hold 10 `bn::sprite_ptrs` looks like this:
+
+```cpp
+bn::vector<bn::sprite_ptr, 10> circles = {};
+```
+
+Put this BEFORE your for loop. We'll create the vector, then fill it up in the loop.
+
+`bn::vector` is meant to be a direct replacement for `std::vector`. If you have experience with C++ and know how to use a `std::vector`, you already know how to use a `bn::vector`! The only main difference is that we need to specify a `MaxSize` for a `bn::vector`. This is becuase Butano is taking great pains to make everything as memory-efficient and on-the-stack as possible. The GBA is resource-constrained, so we need to take such measures!
+{: .note}
+
+### push_back
+
+Now that we've got an empty vector, let's repeatedly add new sprites to it. To add to the end of a vector, we use `push_back`. Add this to the end of your for-loop:
+
+```cpp
+circles.push_back(myCircle);
+```
+
+We'll now be repeatedly creating a variable `myCircle`, then putting that sprite pointer at the end of the the vector.
+
+> Alternatively we can skip making `myCircle` altogether if we immediately put the sprite_pointer directly into the vector:
+> ```cpp
+> circles.push_back(bn::sprite_items::dot.create_sprite(x, 40));
+> ```
+{: .note}
+
 
 
 
