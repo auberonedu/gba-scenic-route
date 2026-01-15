@@ -1,11 +1,11 @@
 ---
 layout: book
-title: "Loops and Arrays"
+title: "Loops and Vectors"
 parent: "Tutorial: Bubble Wrap"
 nav_order: 500
 ---
 
-# Loops and Arrays
+# Loops and Vectors
 
 In this section we'll be exploring a few different ways to make lines of sprites.
 
@@ -177,9 +177,11 @@ Compile and run your game again and we should see our line of sprites come back!
 Take a moment to experiment! A few things to consider trying:
 
 - What happens if you try to add more sprite pointers than there is space in the vector?
+- Can you make it so there are 20 sprites in the vecotr instead of 10?
 - Can you make the circles more spaced out?
 - Can you have the circles in a vertical line instead of horizontal?
 - What about a diagonal line?
 - Can you make multiple different lines?
+- Can you make them arranged in a circle using a loop (Challenging! You may want to check out the trigonometric functions available in [`bn::math`](https://gvaliente.github.io/butano/group__math.html))
 
 There's lots of directions you can go here!
