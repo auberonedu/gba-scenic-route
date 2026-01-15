@@ -129,6 +129,18 @@ Try making a second dot variable `myCircle2` with new coordinates. Try making a 
 
 Or if that's too cliché, make some other sort of picture with your dots! Once you've got some arrangement you're happy with, add, commit, and push your art for the world to see.
 
+## Proudly displaying your art
+
+In addition to having it in our code and our game, it would be nice if we could share just a picture of what we've made so far. Luckily, mGBA makes this easy! When your game is running, choose Audio/Video > Take screenshot. This will save a PNG in the same directory as the .gba file you're playing. Do this now to take a picture of the art you made.
+
+It will give it some ugly name like `bubble-wrap-0.png`. Rename it to something more evocative of your art.
+
+### A nicer README
+
+Right now, your `README.md` file just has a description taken from default environment template for this textbook. Let's instead have it display your screenshot!
+
+We'll be putting it on your `README`, so folks looking at your code can see a preview of your game! Later we'll expand this to be a GIF of your playing game too.
+
 
 ## Next
 
