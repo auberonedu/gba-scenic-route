@@ -66,3 +66,7 @@ On Mac, open a terminal (`cmd-space` then type `terminal`).
     git config --global core.autocrlf false
     git config --global core.eol lf
     ```
+1. Set VS Code as the default git text editor (needed for some merges)
+    ```
+    git config --global core.editor "code"
+    ```
