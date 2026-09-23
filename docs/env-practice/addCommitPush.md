@@ -13,9 +13,16 @@ In this section we'll learn about how to use git to version our code and back it
 ## Making a change
 
 1. Go back to VS Code and open `README.md`. This is what first shows up when the repo is viewed on GitHub.
-1. Make some small change to the README. It can be as simple as adding the word "hello".
-    > Note that the change you make will be public for anyone on the internet to see.
-1. Save the changes.
+1. Make some small change to the README. It can be as simple as adding the word "hello". Note that the change you make will be public for anyone on the internet to see.
+    > ### I can't edit the README!
+    > Depending on your configuration, the README may open in preview mode, which does not allow you to directly edit it. Preview mode shows you the Markdown with the formatting applied - for this particular README you will see a larger title and a blue link. To change it to editing mode, look in the top right corner of the tab for the Markdown file. It will say "Markdown Preview." Click on it and change it to "Text Editor." You will then have a full editable file.
+    {: .error}
+1. Once you're satusfied with you change to the README, save the changes.
+    > ### Auto Saving
+    > I recommend turning on Auto Save so you don't need to remember to save your files. You can do this in VS Code by going to File > Auto Save and making sure it's checked.
+    >
+    > If you choose not to Auto Save, always make sure your files are saved before running `make`, otherwise your changes will not show up in the recompiled ROM. In VS Code an unsaved file has a white circle next to its name in the tab. If it's saved it'll have the X to close it instead.
+    {: .note}
 
 ## Add and commit changes
 1. Return to the terminal. It should still be in the `env-learning` directory.
@@ -65,6 +72,9 @@ In this section we'll learn about how to use git to version our code and back it
     ```
     make
     ```
+    > ### File Permissions Error
+    > On some operating systems you will not be able to re-make the ROM while it is still open in mGBA. You may get an error saying that permission is denied. If this happens to you, try closing the game in mGBA (you can keep mGBA still running though) and then trying `make` again.
+    {: .error}
 1. Open your ROM in mGBA to see your new changes.
 1. Once you're satisfied with your changes, follow the above steps to add, commit, and push your modifications to `src/main.cpp`
 
