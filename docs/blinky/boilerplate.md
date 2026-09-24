@@ -20,7 +20,7 @@ When we're programming it's best to set small incremental goals. It's OK (and go
 
 If we take hours and try to do everything at once and then it doesn't work, it'll be a nightmare trying to figure out what went wrong. But if we work incrementally, we have a lot smaller space of possibilities to search when something goes wrong.
 
-Our goal for this first part of Bubble Wrap is going to be simply setting the backdrop color. We just want to have SOME visual confirmation that what we're doing is working. Setting the backdrop of the screen to show all blue will let us know we've done that. So let's get to work!
+Our goal for this first part of Blinky is going to be simply setting the backdrop color. We just want to have SOME visual confirmation that what we're doing is working. Setting the backdrop of the screen to show all blue will let us know we've done that. So let's get to work!
 
 ## `int main()` function
 
