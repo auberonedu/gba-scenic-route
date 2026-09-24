@@ -132,7 +132,7 @@ We'll use our emulator mGBA to run the ROM you just created. Open up your ROM (t
 
 ## Butano init
 
-Before we call any functions for Butano, we need to *initialize* the Butano system. Do this by adding the following line to the beiginning of your `main` function (just before the `set_color`).
+Before we call any functions for Butano, we need to *initialize* the Butano system. Do this by adding the following line to the beginning of your `main` function (just before the `set_color`).
 
 ```cpp
 bn::core::init();
@@ -158,14 +158,18 @@ We can try it again! We'll `make` and run it in mGBA again. Fair warning though:
 make
 ```
 
+> ### File Permissions Error
+> On some operating systems you will not be able to re-make the ROM while it is still open in mGBA. You may get an error saying that permission is denied. If this happens to you, try closing the game in mGBA (you can keep mGBA still running though) and then trying `make` again.
+{: .error}
+
 The good news is that compiling is much faster! You'll see it only needs to recompile `main.cpp` and not all of the Butano dependencies from before. The bad news is that we're only seeing a black screen and hearing an awful ticking sound.
 
 ## The update loop
 
-Our issue is that we initialized Butano, set the backdrop, and †hen... nothing. We reached the end of our main method. Running on a normal computer this is where our program would end and control would return to the operating system. But the Game Boy Advance doesn't have an operating system! There's no good place to return to. If we try, bad garbage like our mysterious ticking sound can occur. We need to make sure our `main` never ends.
+Our issue is that we initialized Butano, set the backdrop, and then... nothing. We reached the end of our main method. Running on a normal computer this is where our program would end and control would return to the operating system. But the Game Boy Advance doesn't have an operating system! There's no good place to return to. If we try, bad garbage like our mysterious ticking sound can occur. We need to make sure our `main` never ends.
 
 > ### Is it because we didn't `return 0;`?
-> You may have noticed that `main` is an `int` function, and there's nowhere that we return an `int`. This is a problem for most C/C++ functions - it normally can cause all sorts of unsavory undefined behavior if we don't have a return statement for a non-void function. But there's actually an exception for `main` only. In `main`, if we don't have a return statement hit by the end of the function, it is implictly threated as a `return 0;`. Programming for a normal computer this is fine, but as explained above, `main` ending in ANY way is bad news on the GBA!
+> You may have noticed that `main` is an `int` function, and there's nowhere that we return an `int`. This is a problem for most C/C++ functions - it normally can cause all sorts of unsavory undefined behavior if we don't have a return statement for a non-void function. But there's actually an exception for `main` only. In `main`, if we don't have a return statement hit by the end of the function, it is implictly threated as a `return 0;`. Programming for a normal computer this is fine, but `main` ending in ANY way is bad news on the GBA!
 {: .question}
 
 So what's a good way to make sure `main` never ends? How can we make sure a function keeps on executing forever? Take a guess as to how you think we'll do it!
@@ -181,7 +185,15 @@ We'll use an infinite loop.
 
 This approach is going to be important beyond just making our ticking problem go away. In a real game we want to be continually doing stuff! Characters should be moving, music playing, AI plotting. We don't want to just run a piece of code and be done. It needs to keep going as the player interacts with the game.
 
-By having an infinite loop, we can repeatedly do things like checking what buttons the player is pressing, moving characters around, and updating the positions of sprites on the screen. Butano will be a big help here. Once per screen refresh, we'll call `bn::core::update()`. Everything else that we do in Butano will get relfected with that update call. This update also automatically synchronizes with the screen refresh, so it should get called at 60fps so long as we keep calling it in a loop.
+By having an infinite loop, we can repeatedly do things like checking what buttons the player is pressing, moving characters around, and updating the positions of sprites on the screen. Butano will be a big help here. Once per screen refresh, we'll call `bn::core::update()`. Everything else that we do in Butano will get relfected with that update call. This update also automatically synchronizes with the screen refresh, so it should get called at ~60 frames per second (fps) so long as we keep calling it in a loop.
+
+> ### Technicality!
+> The Game Boy Advance does not run at exactly 60 frames per second. A closer approximation is 59.737 fps (59.737 Hz).
+> Why did Nintendo choose this number? It's due to the hardware of the GBA itself. The processor runs at ~16.78 MHz (~16,780,000 cycles per second). Refreshing the screen takes 280,896 CPU cycles (we'll explore later why it takes that many cycles).
+> Dividing 16,780,000/280,896 we get approximately 59.737, our screen refresh rate. That being said, it's close enough that most of the time we treat it as 60fps unless we're needing to do very precise timing.
+>
+> If you're interested in the very technical nitty-gritty, the authoritative source on GBA technical data is [GBATEK](https://problemkaputt.de/gbatek.htm). Feel free to give it a skim, but know that there is a TON of information in there, far more than the typical GBA homebrew developer will use day-to-day.
+{: .note}
 
 We'll definitely be expanding our loop later, but for now we'll start simple. Place this at the end of your `main` function (but still inside it, before that last curly brace!)
 
@@ -219,8 +231,7 @@ You should very frequently be adding, committing, and pushing in `git`! Every ti
     If you have multiple files to add, you can run `git add FILENAME FILENAME2 FILENAME3` and so on to add them all at once
     {: .note}
 1. Use `git status` again to check that all the files you want to add are in green. Double check that you've got everything you want, and nothing you don't want.
-    #### I made a mistake and added a wrong file!
-    If you made a mistake and need to unstage a change, take a look at the output from `git status`. It'll tell you the correct command to unstage a file. Unstaging makes it so the file doesn't get added to the commit, but it doesn't delete the changes locally. `git` is very descriptive in its error messages and `git status` output. If you're ever unsure how to proceed with git, start by just reading what these messages say! It'll often directly tell you what to do.
+    > If you made a mistake and need to unstage a change, take a look at the output from `git status`. It'll tell you the correct command to unstage a file. Unstaging makes it so the file doesn't get added to the commit, but it doesn't delete the changes locally. `git` is very descriptive in its error messages and `git status` output. If you're ever unsure how to proceed with git, start by just reading what these messages say! It'll often directly tell you what to do.
     {: .error}
 1. Use `git commit -m "YOUR COMMIT MESSAGE"` to make a commit.
     I recommend not using special characters like `!` for now, as your shell may interpret them as special commands. It is possible to include this punctuation, but it can be a bit of a pain using `-m`. If you're interested, search online for "escaping special characters in bash" or search for how to write commit messages using vim.
