@@ -211,6 +211,6 @@ You need to add another if-block inside your while loop, this one checking `b_pr
 > - Can you come up with something more creative to do here?
 {: .challenge}
 
-## What's Next?
+## That's a wrap!
 
-TODO TODO TODO CHECKING ONLINE And that's Blinky!
+Don't forget to add/commit/push all your changes and double-check that your game is publishing correctly online. There was a lot we had to do to get to just a changing color screen. But now we know the fundamentals of how to work with Butano, and we'll be moving to bigger and better things. Au revoir Blinky!

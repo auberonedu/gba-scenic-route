@@ -11,9 +11,9 @@ Let's get set up! I'll be writing these instructions assuming that you've follow
 
 ## GitHub Configuration
 
-This will look very similar at the start of each project. We'll be starting from a repository already provided for you, and editing from there. Below are abbreviated steps, if you want more detail feel free to look back at the [Forking and Cloning instructions]({% link env-practice/forkClone.md %}). Just make sure to do it with the new TODO TODO TODO BLINKY REPO<a href="" target="_blank" rel="noopener">Blinky Repo</a>.
+This will look very similar at the start of each project. We'll be starting from a repository already provided for you, and editing from there. Below are abbreviated steps, if you want more detail feel free to look back at the [Forking and Cloning instructions]({% link env-practice/forkClone.md %}). Just make sure to do it with the new <a href="https://github.com/auberonedu/blinky" target="_blank" rel="noopener">Blinky Repo</a>.
 
-1. Open the TODO TODO TODO BLINKY REPO<a href="" target="_blank" rel="noopener">Blinky Repo</a>. in a new tab.
+1. Open the <a href="https://github.com/auberonedu/blinky" target="_blank" rel="noopener">Blinky Repo</a> in a new tab.
 1. FORK THE REPO by cliicking the fork button. This is important! If you forget to fork you won't be able to push any changes.
 1. Enable workflows under the Actions tab
 1. Under Settings > Code and automation > Pages > Build and deployment > Source choose **GitHub Actions**
